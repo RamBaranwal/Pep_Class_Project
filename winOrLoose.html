@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinOrLoose</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div>
+        <div>
+            <label> Win Or Loose</label>
+            <input type="number" id="num" oninput="search()">
+            <!-- <button id="search" onclick="search()">Search</button> -->
+        </div>
+        <div id="box1" ></div>
+        <div id="box2" ></div>
+        <div id="box3" ></div>
+        <div id="box4" ></div>
+        <div>
+            <label id="result">Result</label>
+        </div>
+    </div>
+</body>
+    <script>
+        let randomNumber;
+        function search(){
+            let number = document.getElementById("num").value;
+            setTimeout(() =>{
+                let box1 = document.getElementById("box1").innerText = Math.floor(Math.random() * 4) + 1;
+                console.log(box1);
+                let box2 = document.getElementById("box2").innerText = Math.floor(Math.random() * 4) + 1;
+                console.log(box2);
+                let box3 = document.getElementById("box3").innerText = Math.floor(Math.random() * 4) + 1;
+                console.log(box3);
+                let box4 = document.getElementById("box4").innerText = Math.floor(Math.random() * 4) + 1;
+                console.log(box4);
+                if (Number(number) === box1 || Number(number) === box2 || Number(number) === box3 || Number(number) === box4) {
+                document.getElementById("result").innerHTML = "Winner!";
+                } else {
+                    document.getElementById("result").innerHTML = "Try Again!";
+                }
+            },1000)
+        }
+    </script>
+</html>
