@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: linear-gradient(90deg,rgb(230, 214, 214),rgb(224, 203, 203));
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            cursor: pointer;
+            background: linear-gradient(45deg, rgb(242, 173, 173),rgb(205, 90, 161));
+            border-radius: 25px;
+            /* padding: 20px; */
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <div id = "box1" onclick="move()">div1</div>
+        <br />
+        <div id = "box2">div2</div>
+        <br />
+        <div id = "box3">div3</div>
+        <br />
+        <div id = "box4">div4</div>
+    </div>
+</body>
+<script>
+    // let leftmargin = 30;
+    // let topmargin = -30;
+    function move(){
+        let box1 = document.getElementById("box1").style.marginLeft = "120px";
+        let box2 = document.getElementById("box2").style.marginTop = "-120px";
+        let box3 = document.getElementById("box3").style.marginLeft = "120px";
+        let box4 = document.getElementById("box4").style.marginTop = "-120px";
+    }
+</script>
+</html>

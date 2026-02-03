@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Personal Task Manager</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, rgb(74, 74, 175), rgb(170, 157, 228));
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+    }
+
+    .container {
+        background: rgb(252, 249, 249);
+        padding: 20px;
+        width: 650px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    input, select, button {
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 10px;
+    }
+
+    button {
+        background: #1078ef;
+        color: white;
+        border: 1px solid black;
+        border-radius: 25px;
+        cursor: pointer;
+
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 15px;
+        /* Use separate to allow rounded corners and spacing */
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        background: white;
+    }
+
+    th, td {
+        /* Only use bottom border for clean separators */
+        border-bottom: 1px solid #e9eef3;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background: #007bff;
+        color: white;
+        font-weight: 600;
+    }
+
+    .low { background: #f5fdf7; }
+    .medium { background: #faf6eb; }
+    .high { background: #f5e4e5; }
+
+    .progress {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .done {
+        color: green;
+        font-weight: bold;
+    }
+
+    .done-btn {
+        background: green;
+        padding: 5px 10px;
+    }
+
+    .done-btn:hover {
+        background: darkgreen;
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h2>📋 Daily Productivity Manager</h2>
+
+    <input type="date" id="date">
+    <input type="text" id="task" placeholder="Enter task">
+    <select id="priority">
+        <option value="">Priority</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+    <button onclick="addTask()">Add Task</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Task</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="taskTable"></tbody>
+    </table>
+</div>
+
+<script>
+function addTask() {
+    let date = document.getElementById("date").value;
+    let task = document.getElementById("task").value;
+    let priority = document.getElementById("priority").value;
+
+    if (date === "" || task === "" || priority === "") {
+        alert("Fill all fields");
+        return;
+    }
+
+    let table = document.getElementById("taskTable");
+    let row = table.insertRow();
+
+    row.className = priority;
+
+    row.insertCell(0).innerText = date;
+    row.insertCell(1).innerText = task;
+    row.insertCell(2).innerText = priority;
+
+    let statusCell = row.insertCell(3);
+    statusCell.innerText = "In Progress";
+    statusCell.className = "progress";
+
+    let actionCell = row.insertCell(4);
+    let btn = document.createElement("button");
+    btn.innerText = "Done";
+    btn.className = "done-btn";
+    btn.onclick = function () {
+        statusCell.innerText = "Done";
+        statusCell.className = "done";
+        btn.disabled = true;
+    };
+    actionCell.appendChild(btn);
+
+    // Clear inputs
+    document.getElementById("task").value = "";
+    document.getElementById("priority").value = "";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Block Color</title>
+    <style>
+        body{
+            background-color: black;
+            color: bisque;
+            font-size: 20px;
+            /* display: flex; */
+            /* text-align: center; */
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            border: 2px solid white;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+         #box2{
+            width: 100px;
+            height: 100px;
+            border: 2px solid white;
+            margin-top: 200px;
+            border-radius: 10px;
+            /* background-color: blueviolet; */
+        }
+    </style>
+</head>
+<body>
+    <label>Color Change Timer</label>
+    <div onclick="colorChange()" id="box1"></div>
+    <div  id="box2" ></div>
+</body>
+<script>
+    function colorChange(){
+        setTimeout(() => {
+            document.getElementById("box2").style.background = "orange";
+        }, 2000);
+    }
+
+</script>
+</html>

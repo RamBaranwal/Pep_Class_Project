@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            margin: 10px;
+            cursor: pointer;
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <div id="first" onclick="colorChange()"></div>
+    <div id="second" onclick="colorChange2()"></div>
+    <div id="third" onclick="colorChange3()"></div>
+    <div id="fourth" onclick="colorChange4()"></div>
+</body>
+<script>
+    function colorChange(){
+        let box1 = document.getElementById("first").style.background = "orange";
+        let box2 = document.getElementById("second").style.background = "palegoldenrod";
+        let box3 = document.getElementById("third").style.background = "aquamarine";
+        let box4 = document.getElementById("fourth").style.background = "grey";
+    }
+    function colorChange2(){
+        let box1 = document.getElementById("first").style.background = "palegoldenrod";
+        let box2 = document.getElementById("second").style.background = "orange";
+    }
+    function colorChange3(){
+        let box2 = document.getElementById("second").style.background = "aquamarine";
+        let box3 = document.getElementById("third").style.background = "palegoldenrod";
+    }
+    function colorChange4(){
+        let box3 = document.getElementById("third").style.background = "grey";
+        let box4 = document.getElementById("fourth").style.background = "aquamarine";
+    }
+</script>
+</html>

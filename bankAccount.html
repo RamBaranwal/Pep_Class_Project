@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Account</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(90deg, black, grey);
+        }
+
+        .container {
+            width: 380px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .top-buttons button {
+            width: 48%;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .display {
+            display: none;
+            margin: 10px 0;
+        }
+
+        .show-btn {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Bank Account</h2>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <div class="top-buttons">
+        <button onclick="deposit()">Deposit</button>
+        <button onclick="withdraw()">Withdraw</button>
+    </div>
+
+    <div class="display" id="displayBox">
+        <p>Previous Balance: ₹<span id="prevBalance"></span></p>
+        <p>Transaction Amount: ₹<span id="transaction"></span></p>
+        <p>Current Balance: ₹<span id="currentBalance"></span></p>
+    </div>
+
+    <button class="show-btn" onclick="showBalance()">Show Current Balance</button>
+</div>
+
+<script>
+    let balance = 0;
+
+    function showDisplay(prev, trans, curr) {
+        document.getElementById("prevBalance").innerText = prev;
+        document.getElementById("transaction").innerText = trans;
+        document.getElementById("currentBalance").innerText = curr;
+        document.getElementById("displayBox").style.display = "block";
+    }
+
+    function deposit() {
+        let amount = Number(document.getElementById("amount").value);
+        if (amount <= 0) {
+            alert("Enter valid amount");
+            return;
+        }
+
+        let prev = balance;
+        balance += amount;
+
+        showDisplay(prev, amount, balance);
+        document.getElementById("amount").value = "";
+    }
+
+    function withdraw() {
+        let amount = Number(document.getElementById("amount").value);
+        if (amount <= 0) {
+            alert("Enter valid amount");
+            return;
+        }
+        if (amount > balance) {
+            alert("Insufficient Balance");
+            return;
+        }
+
+        let prev = balance;
+        balance -= amount;
+
+        showDisplay(prev, amount, balance);
+        document.getElementById("amount").value = "";
+    }
+
+    function showBalance() {
+        showDisplay(balance, 0, balance);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch with Milliseconds</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(90deg,rgb(206, 79, 79), rgb(231, 171, 171));
+        }
+
+        .stopwatch {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        #display {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: azure;
+            border-radius: 10px;
+        }
+        button:hover{
+            transform: translateY(-5px);
+        }
+        #lab{
+            font-size: 40px;
+            font-family: cursive;
+            color: rgb(215, 95, 115);
+        }
+    </style>
+</head>
+<body>
+
+<div class="stopwatch">
+    <label id="lab">Timer Watch</label>
+    <div id="display">00:00:00:000</div>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="reset()">Reset</button>
+</div>
+
+<script>
+    let sec = 0;
+    let min = 0;
+    let hou = 0;
+    let ms = 0; // represents 10ms units
+    let timer = null;
+        function runstopwatch(){
+        ms += 10;
+        if(ms == 1000){
+            sec++;
+            ms = 0;
+        }
+        
+        if(sec == 60){
+            sec = 0;
+            min++;
+        }
+
+        if(min == 60){
+            hou++;
+            min = 0;
+        }
+
+        document.getElementById("display").innerText = 
+        `${String(hou).padStart(2,'0')}:` +
+        `${String(min).padStart(2,'0')}:` +
+        `${String(sec).padStart(2,'0')}:` +
+        `${String(ms).padStart(3, '0')}`
+    }
+
+    function start(){
+        if(timer != null) return;
+        timer = setInterval(runstopwatch, 10);
+        console.log("timer",timer);
+    }
+
+    function stop(){
+        clearInterval(timer);
+        console.log("timmmmmer",timer)
+        timer = null;
+    }
+
+    function reset(){
+        stop();
+        sec = min = hou = 0;
+        document.getElementById("display").innerText = "00:00:00:000";
+    }
+</script>
+
+
+</body>
+</html>

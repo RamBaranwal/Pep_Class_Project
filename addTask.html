@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Task App</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #90d8a9, #a328c5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 320px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .box h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 15px;
+            width: 80%;
+            border-radius: 8px;
+            border: 1px solid #e2d4d4;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #e34207;
+            box-shadow: 0 0 5px rgba(102,126,234,0.5);
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #52ad5f;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #a5cd37;
+            transform: translateY(-1px);
+        }
+
+        #adddiv {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #adddiv div {
+            background: #f4f6ff;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #333;
+            border-left: 4px solid #8ad467;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>Task App</h2>
+        <input type="text" id="tasklist" placeholder="Enter task">
+        <button onclick="addtaskfun()">Add Task</button>
+        <div id="adddiv"></div>
+    </div>
+
+    <script>
+        function addtaskfun(){
+            const tasktext = document.getElementById('tasklist').value;
+
+            if(tasktext === ''){
+                alert("Please enter the task");
+                return;
+            }
+
+            let add = document.createElement('div');
+            add.innerHTML = `Task is ${tasktext}`;
+            document.getElementById('adddiv').appendChild(add);
+
+            document.getElementById('tasklist').value = '';
+        }
+    </script>
+</body>
+</html>

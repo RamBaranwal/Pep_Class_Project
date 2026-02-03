@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote Counter</title>
+
+    <style>
+        :root{--bg1:#0f172a;--bg2:#071129;--card:#0b1220;--accent1:#ff9800;--accent2:#4caf50;--accent3:#2196f3}
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body {
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+            margin:0;display:flex;align-items:center;justify-content:center;
+            background: linear-gradient(180deg,var(--bg1),var(--bg2));color:#e6eef8;padding:20px
+        }
+
+        .container {
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+            padding: 24px 26px;border-radius:14px;box-shadow:0 14px 40px rgba(2,6,23,0.6);
+            width: min(380px,96%);text-align:center;border:1px solid rgba(255,255,255,0.03)
+        }
+
+        h2 {margin:0 0 18px 0;color:#fff;font-size:20px}
+
+        .party{display:flex;justify-content:space-between;align-items:center;padding:10px 8px;margin:10px 0;border-radius:10px;background:rgba(255,255,255,0.02)}
+
+        .party .label{display:flex;align-items:center;gap:12px}
+
+        button.vote{
+            padding:8px 14px;border:none;border-radius:8px;cursor:pointer;font-weight:700;color:#07203a;
+            box-shadow: 0 8px 22px rgba(2,6,23,0.24);transition:transform .18s ease,opacity .2s
+        }
+
+        button.vote:hover{transform:translateY(-4px)}
+        button.vote:active{transform:translateY(0)}
+
+        .bjp{background:linear-gradient(90deg,var(--accent1),#ffb74d)}
+        .congress{background:linear-gradient(90deg,var(--accent2),#8bc34a)}
+        .aap{background:linear-gradient(90deg,var(--accent3),#64b5f6)}
+
+        .controls{display:flex;gap:8px;margin-top:14px;justify-content:center}
+        .btn-secondary{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;cursor:pointer}
+
+        .result{margin-top:14px;padding:12px;border-radius:10px;background:linear-gradient(90deg,#7c3aed,#06b6d4);color:#fff;font-weight:800}
+
+        .hidden{display:none!important}
+        button[disabled]{opacity:0.6;cursor:not-allowed;transform:none}
+
+        span.count{font-size:18px;font-weight:800;color:#fff;min-width:38px;text-align:center}
+
+        @media (max-width:420px){.container{padding:16px}.party{padding:8px}}
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Vote Counter</h2>
+
+    <div id="result" class="result hidden" role="status" aria-live="polite"></div>
+
+    <div class="party">
+        <div class="label"><button class="vote bjp" data-party="bjp" onclick="bjpVote()">BJP</button></div>
+        <span id="bjp" class="count">0</span>
+    </div>
+
+    <div class="party">
+        <div class="label"><button class="vote congress" data-party="congress" onclick="congressVote()">Congress</button></div>
+        <span id="congress" class="count">0</span>
+    </div>
+
+    <div class="party">
+        <div class="label"><button class="vote aap" data-party="aap" onclick="aapVote()">AAP</button></div>
+        <span id="aap" class="count">0</span>
+    </div>
+
+    <div class="controls">
+        <button id="declareBtn" class="btn-secondary">Declare Winner</button>
+        <button id="resetBtn" class="btn-secondary hidden">Reset</button>
+    </div>
+</div>
+
+<script>
+    let bjpCount = 0;
+    let congressCount = 0;
+    let aapCount = 0;
+    let votingClosed = false;
+
+    function updateCount(id, val){
+        document.getElementById(id).innerText = val;
+    }
+
+    function bjpVote(){ if(votingClosed) return; bjpCount++; updateCount('bjp', bjpCount); }
+    function congressVote(){ if(votingClosed) return; congressCount++; updateCount('congress', congressCount); }
+    function aapVote(){ if(votingClosed) return; aapCount++; updateCount('aap', aapCount); }
+
+    function declareWinner(){
+        // determine max
+        const counts = [{k:'BJP',v:bjpCount},{k:'Congress',v:congressCount},{k:'AAP',v:aapCount}];
+        const maxVal = Math.max(bjpCount, congressCount, aapCount);
+        const winners = counts.filter(c=>c.v === maxVal && maxVal > 0);
+        const resultEl = document.getElementById('result');
+
+        if(maxVal === 0){
+            resultEl.classList.remove('hidden');
+            resultEl.innerText = 'No votes cast yet.';
+            return;
+        }
+
+        if(winners.length > 1){
+            resultEl.classList.remove('hidden');
+            resultEl.innerText = `It's a tie between ${winners.map(w=>w.k).join(' & ')} with ${maxVal} votes each.`;
+        } else {
+            resultEl.classList.remove('hidden');
+            resultEl.innerText = `${winners[0].k} wins with ${winners[0].v} votes!`;
+        }
+
+        // disable and hide voting buttons
+        document.querySelectorAll('.vote').forEach(b=>{ b.disabled = true; b.classList.add('hidden'); });
+        votingClosed = true;
+        // show reset
+        document.getElementById('resetBtn').classList.remove('hidden');
+    }
+
+    function resetVoting(){
+        bjpCount = congressCount = aapCount = 0;
+        updateCount('bjp',0); updateCount('congress',0); updateCount('aap',0);
+        votingClosed = false;
+        document.querySelectorAll('.vote').forEach(b=>{ b.disabled = false; b.classList.remove('hidden'); });
+        document.getElementById('result').classList.add('hidden');
+        document.getElementById('resetBtn').classList.add('hidden');
+    }
+
+    document.getElementById('declareBtn').addEventListener('click', declareWinner);
+    document.getElementById('resetBtn').addEventListener('click', resetVoting);
+</script>
+
+</body>
+</html>

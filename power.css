@@ -1,0 +1,61 @@
+/* Updated layout: centered, larger container, improved inputs */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(125deg, #5cada2 0%, #f4f6f8 100%);
+}
+
+#container {
+    width: min(560px, 92%);
+    padding: 28px;
+    margin: 0; /* centered by body flex */
+    background-color: #ffffff;
+    border: 1px solid rgba(2,6,23,0.06);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(2,6,23,0.08);
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+input[type="number"] {
+    width: 95%;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    border: 1px solid #e6eef8;
+    background: linear-gradient(180deg, #fff, #fbfdff);
+    box-shadow: inset 0 1px 0 rgba(0,0,0,0.02);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #45b96a, #06b6d4);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(124,58,237,0.14);
+}
+
+/* small responsive tweaks */
+@media (max-width:420px){
+    #container{padding:18px}
+    label{font-size:13px}
+}

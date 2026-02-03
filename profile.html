@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+
+  <link rel="stylesheet" href="style-profile.css">
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+      <div class="avatar" title="Click to change avatar">
+        <div class="ring"></div>
+        <img id="avatarImg" src="assets/profile-placeholder.svg" alt="avatar">
+      </div>
+
+      <div class="title">
+        <h1 id="name">Your Name</h1>
+        <p id="role">Creative Front-end • Student</p>
+        <p id="bio">I craft delightful interfaces with attention to detail, accessibility, and performance.</p>
+        <div class="socials" aria-hidden="false">
+          <a href="#" title="GitHub">🐙</a>
+          <a href="#" title="LinkedIn">🔗</a>
+          <a href="#" title="Twitter">🐦</a>
+        </div>
+      </div>
+
+      <div class="actions">
+        <label class="upload-label" for="avatarInput">Upload Avatar</label>
+        <input id="avatarInput" class="file-input" type="file" accept="image/*">
+        <button class="btn" id="downloadCv">Download CV</button>
+        <button class="btn secondary" id="editProfile">Edit</button>
+        <button class="toggle" id="toggleTheme" title="Toggle theme"><span class="theme-icon">🌙</span></button>
+      </div>
+
+      <div class="blob" aria-hidden="true"></div>
+    </header>
+
+    <div class="card-grid">
+      <section class="card section info">
+        <h3>Contact</h3>
+        <div class="contact-list">
+          <div class="contact-item"><div class="label">Email</div><div><a href="mailto:yourmail@gmail.com" id="email">yourmail@gmail.com</a></div></div>
+          <div class="contact-item"><div class="label">Phone</div><div id="phone">+91 XXXXXXXXXX</div></div>
+          <div class="contact-item"><div class="label">Location</div><div id="location">Your City, Your State</div></div>
+        </div>
+
+        <h3 style="margin-top:18px">About</h3>
+        <p class="muted">Born to learn and iterate on design and code. Driven by clarity, simplicity, and performance.</p>
+      </section>
+
+      <aside class="card">
+        <h3>Skills</h3>
+        <div class="skills">
+          <div class="skill-badge">HTML</div>
+          <div class="skill-badge">CSS</div>
+          <div class="skill-badge">JavaScript</div>
+          <div class="skill-badge">React</div>
+          <div class="skill-badge">Node.js</div>
+        </div>
+
+        <h3 style="margin-top:16px">Progress</h3>
+        <div style="margin-top:8px">
+          <div class="label">UI Design</div>
+          <div class="progress" style="margin:6px 0"><span style="width:78%"></span></div>
+
+          <div class="label">Algorithms</div>
+          <div class="progress" style="margin:6px 0"><span style="width:62%"></span></div>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+  <script src="profile.js"></script>
+</body>
+</html>
