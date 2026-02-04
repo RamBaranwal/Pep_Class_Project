@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    localStorage.setItem("name", "Ravan");
+    localStorage.setItem("roll","31");
+    localStorage.setItem("course","B Tech");
+    localStorage.setItem("section","PEP");
+    let nameval = localStorage.getItem("name");
+    let rollval = localStorage.getItem("roll");
+    let courseval = localStorage.getItem("course");
+    let sectionval = localStorage.getItem("section");
+    console.log("Hello", nameval);
+    console.log("Roll Call", rollval);
+    console.log("Study", courseval);
+    console.log("Section", sectionval);
+</script>
+</html>
